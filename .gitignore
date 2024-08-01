@@ -1,0 +1,48 @@
+# Kotlin and Gradle
+*.iml
+.gradle
+**/build/
+local.properties
+.DS_Store
+
+# IntelliJ/Android Studio
+.idea
+*.idea/
+*.iws
+*.ipr
+
+# Android
+captures
+.externalNativeBuild
+.cxx
+
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+!*.xcworkspace/xcshareddata/
+!*.xcworkspace/xcshareddata/xcschemes/
+
+# KMP Specific
+.kotlin
+
+# Ignore node_modules (for projects that might include JS targets)
+node_modules/
+
+# Ignore Carthage/Build (if you use Carthage for iOS dependencies)
+Carthage/Build/
+
+# Ignore Pods directory (CocoaPods)
+Pods/
+# Ignore generated xcfilelist files
+*.xcfilelist
+
+# Ignore generated Code directory (if using Swift Package Manager)
+.swiftpm/
+.build/
