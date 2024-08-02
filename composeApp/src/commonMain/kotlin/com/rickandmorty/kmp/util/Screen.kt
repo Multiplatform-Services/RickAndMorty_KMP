@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.rickandmorty.kmp.data.entity.CharacterEntity
 import kmp_rickandmorty.composeapp.generated.resources.Res
 import kmp_rickandmorty.composeapp.generated.resources.characters
 import kmp_rickandmorty.composeapp.generated.resources.details

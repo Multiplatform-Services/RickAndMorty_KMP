@@ -22,9 +22,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import co.touchlab.kermit.Logger
-import com.rickandmorty.kmp.domain.toolbar.ToolbarState
-import com.rickandmorty.kmp.presentation.screens.CharacterDetailScreen
-import com.rickandmorty.kmp.presentation.screens.CharacterListScreen
+import com.rickandmorty.kmp.presentation.toolbar.ToolbarState
+import com.rickandmorty.kmp.presentation.screens.detail.CharacterDetailScreen
+import com.rickandmorty.kmp.presentation.screens.list.CharacterListScreen
 import com.rickandmorty.kmp.util.Screen
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost

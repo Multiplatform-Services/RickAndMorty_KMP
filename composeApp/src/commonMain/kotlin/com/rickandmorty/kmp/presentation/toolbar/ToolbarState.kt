@@ -1,4 +1,4 @@
-package com.rickandmorty.kmp.domain.toolbar
+package com.rickandmorty.kmp.presentation.toolbar
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

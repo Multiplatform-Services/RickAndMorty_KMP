@@ -1,7 +1,7 @@
-package com.rickandmorty.kmp.domain.list
+package com.rickandmorty.kmp.presentation.screens.detail
 
 import co.touchlab.kermit.Logger
-import com.rickandmorty.kmp.data.usecase.GetAllCharactersUseCase
+import com.rickandmorty.kmp.domain.GetCharacterUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,34 +10,35 @@ import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
-class CharacterListViewModel(
-    private val getAllCharacters: GetAllCharactersUseCase,
+class CharacterDetailViewModel(
+    private val id: Int,
+    private val getCharacter: GetCharacterUseCase,
     private val logger: Logger,
 ) : ViewModel() {
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        logger.e(throwable) { "⚠️ Error fetching characters: ${throwable.message}" }
+        logger.e(throwable) { "⚠️ Error fetching character: ${throwable.message}" }
         _characterListState.update { state ->
             state.copy(
                 isLoading = false,
-                error = "⚠️ Error fetching characters: ${throwable.message}"
+                error = "⚠️ Error fetching character: ${throwable.message}"
             )
         }
     }
-    private val _characterListState = MutableStateFlow(CharacterListState())
-    val characterListState: StateFlow<CharacterListState> get() = _characterListState
+    private val _characterListState = MutableStateFlow(CharacterDetailState())
+    val characterListState: StateFlow<CharacterDetailState> get() = _characterListState
 
     init {
-        fetchAllCharacters()
+        viewModelScope.launch { fetchCharacter(id) }
     }
 
-    private fun fetchAllCharacters() {
+    private fun fetchCharacter(id: Int) {
         _characterListState.update { it.copy(isLoading = true) }
         logger.i { "🔍 Fetching characters from GetAllCharactersUseCase..." }
         viewModelScope.launch(exceptionHandler) {
-            val characterList = getAllCharacters()
+            val character = getCharacter(id)
             logger.i { "📄 Character list fetched successfully" }
-            _characterListState.update { it.copy(isLoading = false, characters = characterList) }
+            _characterListState.update { it.copy(isLoading = false, character = character) }
             logger.i { "📄 Character list updated successfully" }
         }
     }

@@ -5,10 +5,10 @@ import co.touchlab.kermit.Logger
 import co.touchlab.kermit.StaticConfig
 import com.rickandmorty.kmp.data.RickAndMortyRepo
 import com.rickandmorty.kmp.data.remote.RickAndMortyService
-import com.rickandmorty.kmp.data.usecase.GetAllCharactersUseCase
-import com.rickandmorty.kmp.data.usecase.GetCharacterUseCase
-import com.rickandmorty.kmp.domain.detail.CharacterDetailViewModel
-import com.rickandmorty.kmp.domain.list.CharacterListViewModel
+import com.rickandmorty.kmp.domain.GetAllCharactersUseCase
+import com.rickandmorty.kmp.domain.GetCharacterUseCase
+import com.rickandmorty.kmp.presentation.screens.detail.CharacterDetailViewModel
+import com.rickandmorty.kmp.presentation.screens.list.CharacterListViewModel
 import com.rickandmorty.kmp.util.getLoggerWithTag
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine

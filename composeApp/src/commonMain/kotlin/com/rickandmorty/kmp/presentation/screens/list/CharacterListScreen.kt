@@ -1,4 +1,4 @@
-package com.rickandmorty.kmp.presentation.screens
+package com.rickandmorty.kmp.presentation.screens.list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -26,16 +26,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.rickandmorty.kmp.data.entity.CharacterEntity
-import com.rickandmorty.kmp.domain.list.CharacterListViewModel
-import com.rickandmorty.kmp.domain.toolbar.ToolbarState
+import com.rickandmorty.kmp.data.entity.Character
+import com.rickandmorty.kmp.presentation.toolbar.ToolbarState
 import com.seiko.imageloader.rememberImagePainter
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable
 fun CharacterListScreen(
     modifier: Modifier = Modifier,
-    goToCharacterDetail: (CharacterEntity) -> Unit,
+    goToCharacterDetail: (Character) -> Unit,
     updateToolbarState: (ToolbarState) -> Unit = {}
 ) {
     val viewModel = koinViewModel<CharacterListViewModel>()
@@ -51,9 +50,9 @@ fun CharacterListScreen(
 
 @Composable
 fun CharacterList(
-    characters: List<CharacterEntity>,
+    characters: List<Character>,
     modifier: Modifier = Modifier,
-    onCharacterClicked: (CharacterEntity) -> Unit = {},
+    onCharacterClicked: (Character) -> Unit = {},
 ) {
     LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2)) {
         if (characters.isEmpty()) item { Text("No characters found.") }
@@ -64,7 +63,7 @@ fun CharacterList(
 }
 
 @Composable
-fun CharacterCard(character: CharacterEntity, onCharacterClicked: (CharacterEntity) -> Unit) {
+fun CharacterCard(character: Character, onCharacterClicked: (Character) -> Unit) {
     val painter = rememberImagePainter(character.image)
     Card(
         modifier = Modifier

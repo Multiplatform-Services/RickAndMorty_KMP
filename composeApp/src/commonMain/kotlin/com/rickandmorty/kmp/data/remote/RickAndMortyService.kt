@@ -1,7 +1,7 @@
 package com.rickandmorty.kmp.data.remote
 
 import co.touchlab.kermit.Logger
-import com.rickandmorty.kmp.data.entity.CharacterEntity
+import com.rickandmorty.kmp.data.entity.Character
 import com.rickandmorty.kmp.data.remote.response.CharacterListResponse
 import com.rickandmorty.kmp.data.remote.response.CharacterResponse
 import io.ktor.client.HttpClient
@@ -12,7 +12,7 @@ import io.ktor.http.isSuccess
 
 class RickAndMortyService(private val client: HttpClient, private val logger: Logger) {
 
-    suspend fun fetchCharacters(): List<CharacterEntity> {
+    suspend fun fetchCharacters(): List<Character> {
         val response = fetchFromApi<CharacterListResponse>("character")
         if (response == null) {
             logger.i { "📄 No Characters found" }
@@ -21,7 +21,7 @@ class RickAndMortyService(private val client: HttpClient, private val logger: Lo
         logger.i { "📄 Characters response data: ${response.info}" }
         return response.results
             .map { character ->
-                CharacterEntity(
+                Character(
                     id = character.id,
                     name = character.name,
                     status = character.status,
@@ -31,11 +31,11 @@ class RickAndMortyService(private val client: HttpClient, private val logger: Lo
             .also { logger.i { "📝 Character list: $it" } }
     }
 
-    suspend fun fetchCharacter(id: Int): CharacterEntity {
+    suspend fun fetchCharacter(id: Int): Character {
         val endpoint = "character/$id"
         val response = fetchFromApi<CharacterResponse>(endpoint) ?: error("Character not found")
 
-        return CharacterEntity(
+        return Character(
             id = response.id,
             name = response.name,
             status = response.status,

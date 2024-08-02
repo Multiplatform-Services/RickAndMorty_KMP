@@ -1,4 +1,4 @@
-package com.rickandmorty.kmp.presentation.screens
+package com.rickandmorty.kmp.presentation.screens.detail
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.CircularProgressIndicator
@@ -9,8 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.rickandmorty.kmp.domain.detail.CharacterDetailViewModel
-import com.rickandmorty.kmp.domain.toolbar.ToolbarState
+import com.rickandmorty.kmp.presentation.toolbar.ToolbarState
 import moe.tlaster.precompose.koin.koinViewModel
 import org.koin.core.parameter.parametersOf
 

@@ -1,4 +1,4 @@
-package com.rickandmorty.kmp.data.usecase
+package com.rickandmorty.kmp.domain
 
 import com.rickandmorty.kmp.data.RickAndMortyRepo
 
