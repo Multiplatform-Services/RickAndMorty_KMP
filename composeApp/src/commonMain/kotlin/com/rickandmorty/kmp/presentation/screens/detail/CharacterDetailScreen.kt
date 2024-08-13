@@ -41,12 +41,10 @@ fun CharacterDetailScreen(
 
     Box(modifier, contentAlignment = Alignment.Center) {
         //Text(state.character?.toString() ?: "Error happened")
-        if (state.character?.id == id) {
-            LazyColumn {
-                state.character?.let { character ->
-                    items(items = character.episode) { episode ->
-                        ContentRow(episode)
-                    }
+        LazyColumn {
+            state.character?.let { character ->
+                items(items = character.episode) { episode ->
+                    ContentRow(episode)
                 }
             }
         }
