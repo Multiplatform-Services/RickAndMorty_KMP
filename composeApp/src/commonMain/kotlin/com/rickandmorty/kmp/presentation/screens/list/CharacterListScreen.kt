@@ -64,7 +64,6 @@ fun CharacterList(
     modifier: Modifier = Modifier,
     onCharacterClicked: (Character) -> Unit = {},
 ) {
-
     val listState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
     val isFabVisible by remember {
@@ -87,7 +86,7 @@ fun CharacterList(
                     .padding(16.dp),
                 backgroundColor = Color.White
             ) {
-                Icon(Icons.Default.Face, contentDescription = "Add Character")
+                Icon(Icons.Default.Face, contentDescription = "Character Face")
             }
         }
     }
