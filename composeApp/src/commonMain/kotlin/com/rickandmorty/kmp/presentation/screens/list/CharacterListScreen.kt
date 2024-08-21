@@ -11,34 +11,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.rickandmorty.kmp.data.entity.Character
 import com.rickandmorty.kmp.presentation.toolbar.ToolbarState
 import com.seiko.imageloader.rememberImagePainter
-import kotlinx.coroutines.launch
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable
@@ -65,29 +55,11 @@ fun CharacterList(
     onCharacterClicked: (Character) -> Unit = {},
 ) {
 
-    val listState = rememberLazyGridState()
-    val coroutineScope = rememberCoroutineScope()
-    val isFabVisible by remember {
-        derivedStateOf {
-            listState.firstVisibleItemIndex > 0
-        }
-    }
-    Box{
-        LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2), state = listState) {
+    Box {
+        LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2)) {
             if (characters.isEmpty()) item { Text("No characters found.") }
             items(items = characters, key = { character -> character.id }) { character ->
                 CharacterCard(character, onCharacterClicked)
-            }
-        }
-        if (isFabVisible) {
-            FloatingActionButton(
-                onClick = { coroutineScope.launch { listState.animateScrollToItem(0) } },
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(16.dp),
-                backgroundColor = Color.White
-            ) {
-                Icon(Icons.Default.Face, contentDescription = "Add Character")
             }
         }
     }
