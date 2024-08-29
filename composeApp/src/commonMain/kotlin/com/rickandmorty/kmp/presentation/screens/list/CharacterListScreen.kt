@@ -47,10 +47,8 @@ import androidx.compose.ui.unit.dp
 import com.rickandmorty.kmp.data.entity.Character
 import com.rickandmorty.kmp.presentation.toolbar.ToolbarState
 import com.seiko.imageloader.rememberImagePainter
-import kmp_rickandmorty.composeapp.generated.resources.Res
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.koin.koinViewModel
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CharacterListScreen(
