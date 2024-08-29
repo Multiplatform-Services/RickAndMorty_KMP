@@ -54,6 +54,30 @@ fun CharacterList(
     modifier: Modifier = Modifier,
     onCharacterClicked: (Character) -> Unit = {},
 ) {
+    val listState = rememberLazyGridState()
+    val coroutineScope = rememberCoroutineScope()
+    val isFabVisible by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex > 0
+        }
+    }
+    Box{
+        LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2), state = listState) {
+            if (characters.isEmpty()) item { Text("No characters found.") }
+            items(items = characters, key = { character -> character.id }) { character ->
+                CharacterCard(character, onCharacterClicked)
+            }
+        }
+        if (isFabVisible) {
+            FloatingActionButton(
+                onClick = { coroutineScope.launch { listState.animateScrollToItem(0) } },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(16.dp),
+                backgroundColor = Color.White
+            ) {
+                Icon(Icons.Default.Face, contentDescription = "Character Face")
+            }
     LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2)) {
         if (characters.isEmpty()) item { Text("No characters found.") }
         items(items = characters, key = { character -> character.id }) { character ->
