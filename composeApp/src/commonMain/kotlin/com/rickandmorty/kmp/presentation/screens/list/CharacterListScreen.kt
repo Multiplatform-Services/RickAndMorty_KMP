@@ -54,13 +54,10 @@ fun CharacterList(
     modifier: Modifier = Modifier,
     onCharacterClicked: (Character) -> Unit = {},
 ) {
-
-    Box {
-        LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2)) {
-            if (characters.isEmpty()) item { Text("No characters found.") }
-            items(items = characters, key = { character -> character.id }) { character ->
-                CharacterCard(character, onCharacterClicked)
-            }
+    LazyVerticalGrid(modifier = modifier, columns = GridCells.Fixed(2)) {
+        if (characters.isEmpty()) item { Text("No characters found.") }
+        items(items = characters, key = { character -> character.id }) { character ->
+            CharacterCard(character, onCharacterClicked)
         }
     }
 }
