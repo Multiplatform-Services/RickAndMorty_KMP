@@ -25,7 +25,8 @@ class RickAndMortyService(private val client: HttpClient, private val logger: Lo
                     id = character.id,
                     name = character.name,
                     status = character.status,
-                    image = character.image
+                    image = character.image,
+                    episode = character.episode
                 )
             }
             .also { logger.i { "📝 Character list: $it" } }
@@ -39,7 +40,8 @@ class RickAndMortyService(private val client: HttpClient, private val logger: Lo
             id = response.id,
             name = response.name,
             status = response.status,
-            image = response.image
+            image = response.image,
+            episode = response.episode
         ).also {
             logger.i { "📝 Character: $it" }
         }
